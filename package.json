@@ -1,6 +1,6 @@
 {
   "name": "epd2in13",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Nodejs driver for the Waveshare 2.13inch (B) e-Paper Hat",
   "main": "index.js",
   "scripts": {
