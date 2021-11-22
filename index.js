@@ -12,7 +12,7 @@ let CS_PIN = 24; // 8 BCM
 let BUSY_PIN = 18; // 24 BCM
 
 class epd2in13 {
-	constructor(config) {
+	constructor(config = {}) {
 		this.gpio = rpio;
 		this.spi = false;
 
