@@ -1,6 +1,6 @@
 # epd2in13
-This is a port of the epd2in13bc [Python driver from Waveshare](https://github.com/waveshare/e-Paper/tree/master/RaspberryPi_JetsonNano/python/lib/waveshare_epd). 
-Key feature of this library:
+This is a port of the epd2in13bc [Python driver from Waveshare](https://github.com/waveshare/e-Paper/tree/master/RaspberryPi_JetsonNano/python/lib/waveshare_epd).  
+Key features of this library:
 * Fast, uses native GPIO and SPI libraries
 * Supports Red Color
 * Remappable Pins
@@ -8,8 +8,9 @@ Key feature of this library:
 * Can render from a Canvas or an Image
 
 Since this device is only capble of single tone (black or white, or red), it uses a frame buffer of 1 bit per pixel.  
-The device natively uses a portrait layout as the diagram below but its mapped to a landscale layout instead.  
-Hence Width > Height for `prepareImageFile` or `prepareCanvas` function calls.  
+Although this device natively uses a portrait layout per the diagram below, it is mapped to a landscape layout instead for practical rendering of images or canvas.  
+Hence, Width > Height for `prepareImageFile` or `prepareCanvas` function calls.  
+<a name="layout"></a>
 ![Layout](https://i.postimg.cc/6p9C1HpT/epd2in13-layout.png)
 
 ## In-Action Shot
@@ -71,6 +72,34 @@ Hence Width > Height for `prepareImageFile` or `prepareCanvas` function calls.
         .then(() => display.sleep())
 ```
 
+## Functions Calls
+`epd2in13.init()`  
+Runs the initialization sequence (Required).  
+
+`epd2in13.reset()`  
+Resets the display, runs already as part of the initialization sequence.  
+
+`epd2in13.display(black=[], red=[])`  
+Renders a combination of black and red optional buffers that follows a portrait layout.  
+Refer to [layout diagram](#layout) above.  
+
+`epd2in13.prepareCanvas`  
+Translates the canvas into an image and sends to `prepareImageBuffer` call below.  
+
+`epd2in13.prepareImageFile`  
+Loads an image by fileaname and sends to `prepareImageBuffer` call below.  
+
+`epd2in13.prepareImageBuffer`  
+Takes in the image buffer and prepares it (pixel by pixel) for display, in the process maps the output from landscape to portrait layout.  
+
+`epd2in13.clear(0xFF)`  
+Flushes the screen to white, optionally send 0x00 for black.
+
+`epd2in13.wait()`  
+GPIO delay before the next event.  
+
+`epd2in13.sleep()`  
+Power down (retains ink on screen) the hat and stop listening to events.  
 
 ## TODO
 * Abstract the driver to support multiple other displays in the future
