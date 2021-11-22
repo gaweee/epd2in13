@@ -1,4 +1,4 @@
-# ep2in13
+# epd2in13
 This is a port of the epd2in13bc [Python driver from Waveshare](https://github.com/waveshare/e-Paper/tree/master/RaspberryPi_JetsonNano/python/lib/waveshare_epd). 
 Key feature of this library:
 * Fast, uses native GPIO and SPI libraries
