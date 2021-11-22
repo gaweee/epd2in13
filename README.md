@@ -7,13 +7,21 @@ Key feature of this library:
 * Promises based
 * Can render from a Canvas or an Image
 
+Since this device is only capble of single tone (black or white, or red), it uses a frame buffer of 1 bit per pixel.  
+The device natively uses a portrait layout as the diagram below but its mapped to a landscale layout instead.  
+Hence Width > Height for `prepareImageFile` or `prepareCanvas` function calls.  
+![Layout](https://i.postimg.cc/6p9C1HpT/epd2in13-layout.png)
+
+## In-Action Shot
+![Action Shot](https://i.postimg.cc/SxfbmK4D/epd2in13.png)
+
+
 ## Dependencies
 1. [GPIO](https://github.com/jperkin/node-rpio)
 2. [SPI-Devicve](https://github.com/fivdi/spi-device)
 3. [ImageJS](https://github.com/image-js/image-js) for buffer rendering
 
 ## Getting Started
-* npm
   ```sh
   npm install epd2in13
   ```
@@ -61,9 +69,9 @@ Key feature of this library:
         .then((buffer) => display.wait())
         .then(() => display.clear())
         .then(() => display.sleep())
-});
 ```
 
 
 ## TODO
 * Abstract the driver to support multiple other displays in the future
+* Optional rotation
